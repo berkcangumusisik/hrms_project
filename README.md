@@ -2,7 +2,7 @@
 <img src="https://glaretech.co/wp-content/uploads/2021/01/hrms.jpg">
 
 
-## PROJENİNİ İSTERLERİ
+## BACKEND İSTERLERİ
 ## :fire: Req 1 : İş Arayanlar sisteme kayıt olabilmelidir.
 
 ### Kabul Kriterleri:
@@ -100,11 +100,30 @@
 
 ### :fire: Req 13 : Bir adaya ait tüm CV bilgisi görüntülenebilmelidir.
 
+# :fire: FRONTEND İSTERLERİ
+
+:rainbow:Bir adet React projesi oluşturunuz.
+<br>
+:rainbow:Component hiyerarşinizi "UML component diagram" tekniğini kullanarak modelleyiniz. (araştırma)
+<br>
+:rainbow:Model görselinizi github readme dosyanıza ekleyiniz.
+<br>
+:rainbow:React componentlerinizi oluşturunuz.
+<br>
+:rainbow:Tüm React Componentlerinizi sadece tasarımsal olarak oluşturunuz.
+<br>
+:rainbow:Tüm isterler için JavaScript servislerini ve axios kodlarını yazınız. Bunları React componentlerine bağlamayınız. (Post,Put,Delete araştırma)
+<br>
+:rainbow:Sadece listeleme olan isterleri JS servisinizle bağlayınız.
 # ER DİYAGRAMI 
 
 <img src="https://github.com/berkcangumusisik/hrms_project/blob/main/hrms_sql/hrms.png">
 
-# YAPILAN İŞLEMLER
+# UML DİYAGRAMI 
+
+<img src="https://github.com/berkcangumusisik/hrms_project/blob/main/UML.jpg">
+
+# BACKEND YAPILAN İŞLEMLER
 :star: Veri tabanı güncellendi.
 <br>
 :star:Sahte e-posta servisi eklendi.
@@ -140,3 +159,29 @@
 :star: İş arayanlar idsine göre sıralanabilir.
 <br>
 :star: Sisteme fotoğraf yüklenebilir hale getirildi.
+
+# FRONTEND YAPILAN İŞLEMLER
+:star: React Projesi Oluşturuldu.
+<br>
+:star: UML diyagramı yapıldı.
+<br>
+:star: Listeleme İşlemleri Yapılmaya başlandı.
+<br>
+:star: Navbar yapıldı.
+<br>
+:star: Listeleme için axios servisleri yazıldı.
+
+
+# PROJEDE KULLANILAN TEKNOJİLER
+<br>
+:star: Java
+<br>
+:star: Spring IOC
+<br>
+:star: React
+<br>
+:star:Semantic UI React
+<br>
+:star:Fontawesomme
+<br>
+:star:Reactstrap
