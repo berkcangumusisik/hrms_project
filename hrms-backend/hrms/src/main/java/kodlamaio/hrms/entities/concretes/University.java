@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,9 +38,11 @@ public class University {
 	private int status;
 	
 	@OneToOne(mappedBy = "university")
+	@JsonIgnore()
 	private transient CvEducation cvEducation;
 
 	@OneToMany(mappedBy = "university")
+	@JsonIgnore()
 	private List<Faculty> Faculty;
 
 	@ManyToOne()

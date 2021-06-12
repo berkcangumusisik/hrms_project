@@ -20,4 +20,6 @@ public interface LinkService {
 	DataResult<List<Link>> getAll();
 
 	DataResult<List<Link>> getAllByJobSeekerId(int jobSeeker);
+	
+
 }

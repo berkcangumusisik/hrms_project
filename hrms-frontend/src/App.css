@@ -1,0 +1,18 @@
+.App{
+    text-align: center;
+}
+.ui.main.container{
+    margin-top: 10em;
+}
+
+.photo{
+    margin: 1em;
+    height: 3.5%;
+    width: 3.5%;
+}
+
+.nav-title{
+    color: rgb(2, 0, 4);
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 12px;
+}
