@@ -3,6 +3,13 @@
 BEGIN;
 
 
+CREATE TABLE public.cities
+(
+    city_id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 30000 CACHE 1 ),
+    city_name character varying(100) NOT NULL,
+    PRIMARY KEY (city_id)
+);
+
 CREATE TABLE public.employer_verifications
 (
     verification_code_id integer NOT NULL,
@@ -18,6 +25,22 @@ CREATE TABLE public.employers
     web_address character varying(100) NOT NULL,
     phone_number character varying(16) NOT NULL,
     PRIMARY KEY (user_id)
+);
+
+CREATE TABLE public.job_advertisements
+(
+    job_advertisement_id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 23504 CACHE 1 ),
+    city_id integer NOT NULL,
+    job_description character varying(100) NOT NULL,
+    max_salary integer,
+    min_salary integer,
+    position_amount integer NOT NULL,
+    application_deadline date NOT NULL,
+    advertisement_status boolean NOT NULL,
+    employer_id integer NOT NULL,
+    position_id integer NOT NULL,
+    release_date date NOT NULL,
+    PRIMARY KEY (job_advertisement_id)
 );
 
 CREATE TABLE public.job_positions
@@ -40,7 +63,7 @@ CREATE TABLE public.job_seekers
     first_name character varying(25) NOT NULL,
     last_name character varying(25) NOT NULL,
     identity_number character varying(11) NOT NULL,
-    date_of_birth date NOT NULL,
+    date_of_birth integer NOT NULL,
     PRIMARY KEY (user_id)
 );
 
@@ -66,7 +89,6 @@ CREATE TABLE public.users
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( CYCLE INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     email character varying(100) NOT NULL,
     password character varying(100) NOT NULL,
-    created_at timestamp(0) without time zone NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -102,6 +124,24 @@ ALTER TABLE public.employer_verifications
 ALTER TABLE public.employers
     ADD FOREIGN KEY (user_id)
     REFERENCES public.users (id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_advertisements
+    ADD FOREIGN KEY (city_id)
+    REFERENCES public.cities (city_id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_advertisements
+    ADD FOREIGN KEY (employer_id)
+    REFERENCES public.employers (user_id)
+    NOT VALID;
+
+
+ALTER TABLE public.job_advertisements
+    ADD FOREIGN KEY (position_id)
+    REFERENCES public.job_positions (id)
     NOT VALID;
 
 
