@@ -27,14 +27,12 @@ public class Faculty {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "faculty_id")
+	@Column(name = "id")
 	private int facultyId;
 
 	@Column(name = "faculty_name")
 	private String facultyName;
 
-	@Column(name = "status")
-	private int status;
 
 	@OneToMany(mappedBy = "faculty")
 	@JsonIgnore()

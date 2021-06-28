@@ -7,9 +7,10 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CvSkill;
 
 public interface CvSkillService {
-	Result addAll(List<CvSkill> cvSkill);
-
 	DataResult<List<CvSkill>> getAll();
+	
+	Result add(CvSkill cvSkill);
+	
+	DataResult<List<CvSkill>> getAllByCv_CvId (int cvId);
 
-	DataResult<List<CvSkill>> getAllByJobSeekerId(int jobSeekerId);
 }

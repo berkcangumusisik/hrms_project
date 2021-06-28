@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,21 +18,21 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Table(name="cities")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "cities")
-
 public class City {
+	
 	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "city_id")
+	private int cityId;
 	
 	@Column(name = "city_name")
 	private String cityName;
-	
-	@OneToMany(mappedBy="city")
-	@JsonIgnore()
+
+	@OneToMany(mappedBy = "city")
+	@JsonIgnore
 	private List<JobAdvertisement> jobAdvertisement;
 	
 	@OneToMany(mappedBy = "city")

@@ -7,12 +7,8 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CvEducation;
 
 public interface CvEducationService {
-
-	Result addAll(List<CvEducation> cvEducation);
-
+	Result add(CvEducation cvEducation);
 	DataResult<List<CvEducation>> getAll();
-	
-	DataResult<List<CvEducation>> getAllByJobSeekerId(int id);
-	
-	DataResult<List<CvEducation>> getAllByJobSeekerIdOrderByGraduationDateDesc(int jobSeekerId);
+	DataResult<List<CvEducation>> getAllByCv_CvIdOrderByGraduationDateDesc(int cvId);
+    DataResult<List<CvEducation>> getAllByCv_CvId(int cvId);
 }

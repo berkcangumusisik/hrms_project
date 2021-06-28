@@ -28,14 +28,12 @@ public class University {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "university_id")
+	@Column(name = "id")
 	private int universityId;
 
 	@Column(name = "university_name")
 	private String universityName;
 
-	@Column(name = "status")
-	private int status;
 	
 	@OneToOne(mappedBy = "university")
 	@JsonIgnore()

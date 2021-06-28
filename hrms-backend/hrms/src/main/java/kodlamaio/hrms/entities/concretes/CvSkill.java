@@ -8,32 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "cv_skills")
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name="cv_skills")
 public class CvSkill {
-
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "skill_id")
-	private int programmingLanguageId;
+	private int cvSkillId;
 
-	@NotBlank(message = "The field must be filled")
-	@Column(name = "programming_language")
+	@Column(name="programming_language")
 	private String programmingLanguage;
-
-	@ManyToOne()
-	@JoinColumn(name = "user_id")
-	@JsonIgnore()
-	private JobSeeker jobSeeker;
+	
+	@ManyToOne
+	@JoinColumn(name = "cv_id")
+    private Cv cv;
 }

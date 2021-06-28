@@ -14,31 +14,28 @@ import kodlamaio.hrms.dataAccess.abstracts.CvSkillDao;
 import kodlamaio.hrms.entities.concretes.CvSkill;
 
 @Service
-public class CvSkillManager implements CvSkillService {
-
+public class CvSkillManager implements CvSkillService  {
 	private CvSkillDao cvSkillDao;
-	
-
 	@Autowired
 	public CvSkillManager(CvSkillDao cvSkillDao) {
 		this.cvSkillDao = cvSkillDao;
 	}
-
-	@Override
-	public Result addAll(List<CvSkill> cvSkill) {
-		cvSkillDao.saveAll(cvSkill);
-		return new SuccessResult("Cv'ye Yetenekler Başarıyla Eklendi.");
-	}
-
 	@Override
 	public DataResult<List<CvSkill>> getAll() {
-		return new SuccessDataResult<>(this.cvSkillDao.findAll(),"Yetenekler Başarıyla Listelendi.");
+		return new SuccessDataResult<List<CvSkill>>(this.cvSkillDao.findAll(),"Teknolojiler başarıyla listelendi.");
+
 	}
 
 	@Override
-	public DataResult<List<CvSkill>> getAllByJobSeekerId(int cvId) {
-		return new SuccessDataResult<>(this.cvSkillDao.getAllByJobSeekerId(cvId));
+	public Result add(CvSkill cvSkill) {
+		this.cvSkillDao.save(cvSkill);
+		return new SuccessResult("Programlama Dili Başarıyla Eklendi.");
 	}
 
-	
+	@Override
+	public DataResult<List<CvSkill>> getAllByCv_CvId(int cvId) {
+		return new SuccessDataResult<>(this.cvSkillDao.getAllByCv_CvId(cvId),"Programlama Dilleri Başarıyla Listelendi");
+
+	}
+
 }

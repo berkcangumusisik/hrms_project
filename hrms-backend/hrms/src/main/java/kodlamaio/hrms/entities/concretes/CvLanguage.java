@@ -1,5 +1,5 @@
 package kodlamaio.hrms.entities.concretes;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,42 +7,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "cv_languages")
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name="cv_languages")
 public class CvLanguage {
-
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cv_language_id")
 	private int cvLanguageId;
-
-	@Column(name = "language_level")
-	@Min(1)
-	@Max(5)
-	private int languageLevel;
-
-	@OneToOne()
-	@NotBlank(message = "Boş Geçilemez Alan.")
-	@JoinColumn(name = "language_id")
-	private Language language;
-
-	@ManyToOne()
-	@JoinColumn(name = "user_id")
-	@JsonIgnore()
-	private JobSeeker jobSeeker;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "cv_id")
+    private Cv cv;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="language_level_id")
+	private LanguageLevel languageLevel;
+	
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="foreign_language_id")
+	private ForeignLanguage foreignLanguage;
 }

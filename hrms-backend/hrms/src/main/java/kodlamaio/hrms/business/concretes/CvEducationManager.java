@@ -24,26 +24,26 @@ public class CvEducationManager implements CvEducationService {
 	}
 
 	@Override
-	public Result addAll(List<CvEducation> cvEducation) {
-		cvEducationDao.saveAll(cvEducation);
-		return new SuccessResult();
+	public Result add(CvEducation cvEducation) {
+		this.cvEducationDao.save(cvEducation);
+		return new SuccessResult("CV'ye Eğitim Bilgisi Başarıyla Eklendi.");
 	}
-
 
 	@Override
 	public DataResult<List<CvEducation>> getAll() {
-		return new SuccessDataResult<>(this.cvEducationDao.findAll());
+		return new SuccessDataResult<>(this.cvEducationDao.findAll(),"Eğitim Bilgisi Başarıyla Listelendi.");
+
 	}
 
 	@Override
-	public DataResult<List<CvEducation>> getAllByJobSeekerIdOrderByGraduationDateDesc(int jobSeekerId) {
-		return new SuccessDataResult<>(this.cvEducationDao.getAllByJobSeekerIdOrderByGraduationDateDesc(jobSeekerId),
-				"Okul Bilgileri Listelendi");
+	public DataResult<List<CvEducation>> getAllByCv_CvIdOrderByGraduationDateDesc(int cvId) {
+		return new SuccessDataResult<>(this.cvEducationDao.getAllByCv_CvIdOrderByGraduationDateDesc(cvId),
+				"Mezuniyet Tarihine Göre Listelendi.");
 	}
 
 	@Override
-	public DataResult<List<CvEducation>> getAllByJobSeekerId(int id) {
-		return new SuccessDataResult<>(this.cvEducationDao.getAllByJobSeekerId(id));
-	}
+	public DataResult<List<CvEducation>> getAllByCv_CvId(int cvId) {
+		return new SuccessDataResult<>(this.cvEducationDao.getAllByCv_CvId(cvId));
 
+	}
 }

@@ -22,14 +22,11 @@ public class Section {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "section_id")
+	@Column(name = "id")
 	private int sectionId;
 
 	@Column(name = "section_name")
 	private String sectionName;
-
-	@Column(name = "status")
-	private int status;
 
 	@ManyToOne()
 	@JoinColumn(name = "faculty_id")

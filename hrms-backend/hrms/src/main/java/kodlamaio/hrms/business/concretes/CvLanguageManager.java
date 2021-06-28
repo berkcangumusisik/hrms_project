@@ -12,33 +12,29 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CvLanguageDao;
 import kodlamaio.hrms.entities.concretes.CvLanguage;
+import kodlamaio.hrms.entities.dtos.CvLanguageDto;
 
 @Service
 public class CvLanguageManager implements CvLanguageService {
-
 	private CvLanguageDao cvLanguageDao;
-
-
 	@Autowired
 	public CvLanguageManager(CvLanguageDao cvLanguageDao) {
+		super();
 		this.cvLanguageDao = cvLanguageDao;
 	}
-
-
-	@Override
-	public Result addAll(List<CvLanguage> cvLanguage) {
-		cvLanguageDao.saveAll(cvLanguage);
-		return new SuccessResult("Cv'ye Dil Bilgisi Başarıyla Eklendi.");
-	}
-
 	@Override
 	public DataResult<List<CvLanguage>> getAll() {
-		return new SuccessDataResult<>(this.cvLanguageDao.findAll(),"Cv'ye Dil Bilgisi Başarıyla Listelendi..");
-	}
+		return new SuccessDataResult<List<CvLanguage>>(this.cvLanguageDao.findAll(),"Cv'de Bulunan Yabancı Diller Listelendi.");
 
+	}
 	@Override
-	public DataResult<List<CvLanguage>> getAllByJobSeekerId(int jobSeekerId) {
-		return new SuccessDataResult<>(this.cvLanguageDao.getAllByCvLanguageId(jobSeekerId));
+	public Result add(CvLanguage cvLanguage) {
+		this.cvLanguageDao.save(cvLanguage);
+		return new SuccessResult("CV'ye Yabancı Dil Bilgisi Başarıyla Eklendi.");
 	}
+	@Override
+	public DataResult<List<CvLanguageDto>> getCvLanguageDetails(int cvId) {
+		return new SuccessDataResult<>(this.cvLanguageDao.getCvLanguageDetails(cvId), "Yabancı dil bilgileri listelendi.");
 
+	}
 }

@@ -1,5 +1,4 @@
 package kodlamaio.hrms.entities.concretes;
-
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +12,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PastOrPresent;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,10 +26,10 @@ public class CvEducation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cv_edu_id")
-	private int cvEduId;
+	@Column(name = "id")
+	private int cvEducationId;
 
-	@NotBlank(message = "The field must be filled")
+	@NotBlank(message = "Bu alanın doldurulması zorunludur.")
 	@Column(name = "school_type")
 	private String schoolType;
 
@@ -48,8 +46,8 @@ public class CvEducation {
 	@JoinColumn(name = "university_id")
 	private transient University university;
 
-	@ManyToOne()
-	@JoinColumn(name = "user_id")
-	@JsonIgnore()
-	private JobSeeker jobSeeker;
+	@ManyToOne
+	@JoinColumn(name = "cv_id")
+	private Cv cv;
+	
 }

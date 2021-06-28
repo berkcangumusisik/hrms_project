@@ -9,30 +9,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "job_positions")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobAdvertisement"})
 
 public class JobPosition {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int jobPositionId;
-	
-	@Column(name = "name")
-	private String jobPositionName;
-	
-	@OneToMany(mappedBy="jobPosition")
-	private List<JobAdvertisement> jobAdvertisement;
+	private int positionId;
+
+	@Column(name = "position_name")
+	private String positionName;
+
+	@OneToMany(mappedBy = "jobPosition")
+	@JsonIgnore
+	private List<JobAdvertisement> jobAdvertisement; 
 	
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobPosition")
+	private List<WorkExperience> workExperiences;
 }

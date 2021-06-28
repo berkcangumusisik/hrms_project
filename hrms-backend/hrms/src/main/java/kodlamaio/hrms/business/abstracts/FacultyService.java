@@ -1,3 +1,4 @@
+
 package kodlamaio.hrms.business.abstracts;
 
 import java.util.List;

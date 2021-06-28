@@ -13,41 +13,41 @@ import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 
 @Service
-public class JobPositionManager implements JobPositionService{
-
-private JobPositionDao jobPositionDao;
+public class JobPositionManager implements JobPositionService {
 	
+	private JobPositionDao jobPositionDao;
+
 	@Autowired
 	public JobPositionManager(JobPositionDao jobPositionDao) {
 		super();
 		this.jobPositionDao = jobPositionDao;
 	}
-	
+
 	@Override
 	public List<JobPosition> getAll() {
 		return jobPositionDao.findAll();
 	}
-
+	
 	@Override
 	public Result add(JobPosition jobPosition) {
-		Result result = new ErrorResult("İş Pozisyonu Sisteme Eklenemedi");
-		if (positionIsItUsed(jobPosition.getJobPositionName())) {
+		if (positionIsItUsed(jobPosition.getPositionName())) {
 			this.jobPositionDao.save(jobPosition);
-			result = new SuccessResult("İş Pozisyonu Sisteme Başarıyla Eklendi!");
+			return new SuccessResult("İş Pozisyonu Sisteme Başarıyla Eklendi!");
 		}
-		return result;
+		else {
+		return new ErrorResult("İş Pozisyonu Sisteme Eklenemedi");
+		}
 	}
 	
 	public boolean positionIsItUsed(String positionName) {
 		boolean result = true;
 		for (int i = 0; i < getAll().size(); i++) {
-			if (getAll().get(i).getJobPositionName() == positionName) {
+			if (getAll().get(i).getPositionName() == positionName) {
 				result = false;
 			}
 		}
 		return result;
 	}
-
 	@Override
 	public Result delete(JobPosition jobPosition) {
 		this.jobPositionDao.delete(jobPosition);
@@ -56,14 +56,13 @@ private JobPositionDao jobPositionDao;
 
 	@Override
 	public Result update(JobPosition jobPosition) {
-		Result result = new ErrorResult("İş Pozisyonu Güncellenemedi.");
-		if (positionIsItUsed(jobPosition.getJobPositionName())) {
+		if (positionIsItUsed(jobPosition.getPositionName())) {
 			this.jobPositionDao.save(jobPosition);
-			result = new SuccessResult("İş Pozisyonu Sistemde Başarıyla Güncellendi.");
+			return new SuccessResult("İş Pozisyonu Sisteme Başarıyla Eklendi!");
 		}
-		return result;
+		else {
+		return new ErrorResult("İş Pozisyonu Sisteme Eklenemedi");
+		}
 	}
+
 }
-
-	
-
