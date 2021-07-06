@@ -1,0 +1,20 @@
+.ui.dropdownStyle{
+    margin-top: 1em;
+    font-weight: lighter;
+
+}
+
+.divStyle{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.headerStyle{
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+}

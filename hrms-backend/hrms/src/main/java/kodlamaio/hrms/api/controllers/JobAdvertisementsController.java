@@ -35,9 +35,10 @@ public class JobAdvertisementsController {
 	}
 	
 	@GetMapping("/getByJobAdvertisementId")
-	public DataResult<List<JobAdvertisement>> getByJobAdvertisementId(int id){
+	public DataResult<JobAdvertisement> getByJobAdvertisementId(@RequestParam int id) {
 		return this.jobAdvertisementService.getByJobAdvertisementId(id);
 	}
+
 
 	@GetMapping("/getAllActives")
 	public DataResult<List<JobAdvertisement>> getByAdvertisementStatus(@RequestParam boolean status) {

@@ -77,11 +77,10 @@ private JobAdvertisementDao jobAdvertisementDao;
 		return new SuccessDataResult<List<JobAdvertisementDto>>(this.jobAdvertisementDao.getJobAdvertisementDetails(), "İş ilanları tablo yapısında listelendi.");
 	}
 
-	@Override
-	public DataResult<List<JobAdvertisement>> getByJobAdvertisementId(int id) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByJobAdvertisementId(id), "İş ilanı bilgisi listelendi.");
+	@Override 
+	public DataResult<JobAdvertisement> getByJobAdvertisementId(int id) {
+		return SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByJobAdvertisementId(id));
 	}
-
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllApproveStatus(boolean status) {
 		String message = "Onaylanan ";

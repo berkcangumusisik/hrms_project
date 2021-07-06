@@ -10,13 +10,14 @@ import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAll();
 	
-	DataResult<List<JobAdvertisement>> getByJobAdvertisementId(int id);
+	DataResult<JobAdvertisement> getByJobAdvertisementId(int id);
 	
 	DataResult<List<JobAdvertisement>> getAllSorted();
 	
 	DataResult<List<JobAdvertisement>> getAllActiveSorted();
 	
 	DataResult<List<JobAdvertisement>> getByEmployer_id(int userId);
+
 	
 	DataResult<List<JobAdvertisement>> getByAdvertisementStatus(boolean status);	
 	

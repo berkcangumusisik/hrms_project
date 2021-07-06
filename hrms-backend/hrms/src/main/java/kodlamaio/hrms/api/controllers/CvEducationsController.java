@@ -43,4 +43,9 @@ public class CvEducationsController {
 	public DataResult<List<CvEducation>> getAllByCv_CvIdOrderByGraduationDateDesc(@RequestParam int cvId) {
 		return this.cvEducationService.getAllByCv_CvIdOrderByGraduationDateDesc(cvId);
 	}
+	
+	@GetMapping("/getAllByCv_CvId")
+	public DataResult<List<CvEducation>> getAllByCv_CvId(@RequestParam int cvId) {
+		return this.cvEducationService.getAllByCv_CvId(cvId);
+	}
 }

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.JobPositionService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
@@ -24,10 +26,9 @@ public class JobPositionManager implements JobPositionService {
 	}
 
 	@Override
-	public List<JobPosition> getAll() {
-		return jobPositionDao.findAll();
+	public DataResult<List<JobPosition>> getAll() {
+		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(),"İş Pozisyonları Listelendi");
 	}
-	
 	@Override
 	public Result add(JobPosition jobPosition) {
 		if (positionIsItUsed(jobPosition.getPositionName())) {
@@ -41,10 +42,8 @@ public class JobPositionManager implements JobPositionService {
 	
 	public boolean positionIsItUsed(String positionName) {
 		boolean result = true;
-		for (int i = 0; i < getAll().size(); i++) {
-			if (getAll().get(i).getPositionName() == positionName) {
-				result = false;
-			}
+		if(this.jobPositionDao.getAllPositionName().contains(positionName)) {
+			result = false;
 		}
 		return result;
 	}

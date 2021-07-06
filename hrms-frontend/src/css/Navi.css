@@ -1,0 +1,25 @@
+
+.naviObject .link{
+    margin-left: "3em";
+    margin-top: "0.3em";
+    color: "white";
+    position: "left";
+    font-size:"20px";
+  }
+  
+
+  
+.naviMenu .naviObject{
+    margin-top: "0.3em";
+    color: "white";
+    position: "left";
+    font-size:"20px";
+  }
+  
+Link{
+    margin-left: "3em";
+    margin-top: "0.3em";
+    color: "white";
+    position: "left";
+    font-size:"20px";
+  }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,15 +47,20 @@ public class EmployersController {
 		return employerService.getAll();
 	}
 	@PostMapping("/register")
-	public ResponseEntity<?> add(@Valid @RequestBody Employer employer) {
-		return ResponseEntity.ok(this.employerService.add(employer));
+	public ResponseEntity<?> register(@Valid @RequestBody Employer employer,
+			@RequestParam("passwordAgain") String passwordAgain) {
+		return ResponseEntity.ok(this.employerService.register(employer, passwordAgain));
 	}
-	
+
 	@PostMapping("/update")
 	public ResponseEntity<?> update(@Valid @RequestBody Employer employer) {
 		return ResponseEntity.ok(this.employerService.update(employer));
 	}
 	
+	@PostMapping("/login")
+	public Result login( @RequestParam("email") String email, @RequestParam("password") String password) {
+		return this.employerService.login(email,password);
+	}
 	@DeleteMapping("/delete")
 	public Result delete(@RequestBody int userId) {
 		return this.employerService.delete(userId);
