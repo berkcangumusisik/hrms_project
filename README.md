@@ -194,7 +194,7 @@
 <br>
 <img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/hakkımızda.png">
 <br>
-<img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/ilandetayı.png">
+<img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/ilandetayi.png">
 <br>
 <img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/iletişim.png">
 <br>
