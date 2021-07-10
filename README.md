@@ -177,11 +177,13 @@
 <br>
 :star: İş verenler ilan yayınlayabilir hale getirildi.
 <br>
-:star: Sistem personellerine iş veren ve iş ilanı onayı eklendi.
+:star: Sistem personellerine iş veren ve iş ilanı onayı eklendi. (Backende eklendi frontende entegre edilecek)
 <br>
 :star: Kayıt sayfakaru oluşturldu.
 <br>
 :star: Ana sayfa hazırlandı.
+<br>
+:star: Footer yapıldı.
 
 # PROJEDE KULLANILAN TEKNOJİLER
 <br>
