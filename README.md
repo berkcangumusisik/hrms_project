@@ -185,6 +185,22 @@
 <br>
 :star: Footer yapıldı.
 
+# PROJEDE FOTOĞRAFLARI
+<img src="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/anasayfa.png">
+<br>
+<img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/anasayfa2.png">
+<br>
+<img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/footer.png">
+<br>
+<img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/hakkımızda.png">
+<br>
+<img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/ilandetayı.png">
+<br>
+<img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/iletişim.png">
+<br>
+<img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/işilanları.png">
+<br>
+<img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/işverenkayıt.png">
 # PROJEDE KULLANILAN TEKNOJİLER
 <br>
 :star: Java
