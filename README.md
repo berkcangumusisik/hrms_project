@@ -170,7 +170,20 @@
 :star: Navbar yapıldı.
 <br>
 :star: Listeleme için axios servisleri yazıldı.
-
+<br>
+:star: Tema geliştirildi.
+<br>
+:star: Hakkımızda ve iletişim sayfası eklendi.
+<br>
+:star: İş verenler ilan yayınlayabilir hale getirildi.
+<br>
+:star: Sistem personellerine iş veren ve iş ilanı onayı eklendi. (Backende eklendi frontende entegre edilecek)
+<br>
+:star: Kayıt sayfakaru oluşturldu.
+<br>
+:star: Ana sayfa hazırlandı.
+<br>
+:star: Footer yapıldı.
 
 # PROJEDE KULLANILAN TEKNOJİLER
 <br>
