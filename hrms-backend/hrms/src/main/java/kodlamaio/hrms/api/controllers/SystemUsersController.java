@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -56,6 +57,12 @@ public class SystemUsersController {
 	public Result delete(@RequestParam int userId) {
 		return this.systemUserService.delete(userId);
 		
+	}
+	@Transactional
+	@PostMapping("/employerVerification")
+	public Result updateEmployerSetVerificationStatusForEmployer_id(@RequestParam("employerId") int employerId,
+			@RequestParam("status") boolean status) {
+		return this.systemUserService.updateEmployerSetVerificationStatusForUserId(employerId, status);
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)

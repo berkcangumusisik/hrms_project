@@ -52,7 +52,7 @@ private JobAdvertisementDao jobAdvertisementDao;
 	}
 
 	@Override
-	public Result addJobAdvertisement(JobAdvertisement jobAdvertisement) {
+	public Result  jobAdvertisementAdd(JobAdvertisement jobAdvertisement) {
 		Result result = new ErrorResult("Ekleme başarısız!");
 		if (!jobAdvertisement.getJobDescription().isEmpty()) {
 			this.jobAdvertisementDao.save(jobAdvertisement);
@@ -61,11 +61,18 @@ private JobAdvertisementDao jobAdvertisementDao;
 		return result;
 	}
 
-	@Override
-	public Result updateJobAdvertisementSetJobAdvertisementStatusForEmployer_id(int jobAdvertisementId, int employerId) {
-		this.jobAdvertisementDao.updateJobAdvertisementSetJobAdvertisementStatusForEmployer_id(jobAdvertisementId, employerId);
-		return new SuccessResult("İlan kapatıldı!");
+	@Override 
+	public Result updateJobAdvertisementSetJobAdvertisementStatusForEmployer_userId(int jobAdvertisementId,
+			int employerId, boolean status) {
+		String message = "İlan Kapatıldı!";
+		if (status == true) {
+			message = "İlan Aktif Hale Getirildi!";
+		}
+		this.jobAdvertisementDao.updateJobAdvertisementSetJobAdvertisementStatusForEmployer_userId(jobAdvertisementId,
+				employerId, status);
+		return new SuccessResult(message);
 	}
+
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllActiveSorted() {
@@ -79,7 +86,7 @@ private JobAdvertisementDao jobAdvertisementDao;
 
 	@Override 
 	public DataResult<JobAdvertisement> getByJobAdvertisementId(int id) {
-		return SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByJobAdvertisementId(id));
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByJobAdvertisementId(id));
 	}
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllApproveStatus(boolean status) {
@@ -88,6 +95,21 @@ private JobAdvertisementDao jobAdvertisementDao;
 			message = "Onaylanmayan ";
 		}
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByApprovalStatus(status), message + " iş ilanları listelendi.");
+	}
+	@Override 
+	public Result updateJobAdvertisementSetApprovalStatus(int jobAdvertisementId, boolean status) {
+		String message = "İlan Onaylandı!";
+		if (status == false) {
+			message = "İlan Reddedildi!";
+		}
+		this.jobAdvertisementDao.updateJobAdvertisementSetApprovalStatus(jobAdvertisementId, status);
+		return new SuccessResult(message);
+	}
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllSortedJobAdvertisementByStatusForEmployer_id(boolean status,
+			int employerId) {
+		return new SuccessDataResult<List<JobAdvertisement>>
+		(this.jobAdvertisementDao.getAllSortedJobAdvertisementByStatusForEmployerId(status, employerId), "İş İlanları Listelendi.");
 	}
 	
 }

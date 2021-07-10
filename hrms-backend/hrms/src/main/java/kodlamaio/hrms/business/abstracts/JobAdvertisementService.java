@@ -18,14 +18,19 @@ public interface JobAdvertisementService {
 	
 	DataResult<List<JobAdvertisement>> getByEmployer_id(int userId);
 
+	public DataResult<List<JobAdvertisement>> getAllSortedJobAdvertisementByStatusForEmployer_id(boolean status, int employerId);
+
 	
 	DataResult<List<JobAdvertisement>> getByAdvertisementStatus(boolean status);	
 	
 	DataResult<List<JobAdvertisement>> getAllApproveStatus(boolean status);
 	
-	Result addJobAdvertisement(JobAdvertisement jobAdvertisement);
+	Result jobAdvertisementAdd(JobAdvertisement jobAdvertisement);
 	
-	Result updateJobAdvertisementSetJobAdvertisementStatusForEmployer_id(int jobAdvertisementId, int employerId);
-
+	Result updateJobAdvertisementSetJobAdvertisementStatusForEmployer_userId(int jobAdvertisementId,
+			int employerId, boolean status);
 	DataResult<List<JobAdvertisementDto>> getJobAdvertisementDetails();
+	
+	Result updateJobAdvertisementSetApprovalStatus(int jobAdvertisementId, boolean status);
+
 }

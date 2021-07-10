@@ -13,6 +13,8 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	@Query("From JobAdvertisement where advertisementStatus=true ORDER BY applicationDeadline DESC")
 	List<JobAdvertisement> getAllActiveSorted();
 	
+	@Query("From JobAdvertisement j where j.advertisementStatus=?1 and j.employer.id=?2 ORDER BY applicationDeadline DESC")
+	List<JobAdvertisement> getAllSortedJobAdvertisementByStatusForEmployerId(boolean status, int employerId);
 	JobAdvertisement getByJobAdvertisementId(int id);
 	
 	List<JobAdvertisement> getByAdvertisementStatus(boolean status);
@@ -22,11 +24,21 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	JobAdvertisement getByJobAdvertisementIdAndEmployer_id(int jobAdvertisementId, int userId);
 	
 	List<JobAdvertisement> getByEmployer_id(int userId);
+
+	@Modifying
+	@Query("update JobAdvertisement set advertisementStatus=?3 "
+			+ "where jobAdvertisementId=?1 "
+			+ "and employer.id=?2 ")
+	int updateJobAdvertisementSetJobAdvertisementStatusForEmployer_userId(int jobAdvertisementId, int employerId, boolean status);
 	
 	@Modifying
-	@Query("UPDATE JobAdvertisement SET advertisementStatus = false WHERE jobAdvertisementId=:jobAdvertisementId AND employer.id=:employerId")
-	int updateJobAdvertisementSetJobAdvertisementStatusForEmployer_id(@Param("jobAdvertisementId") int jobAdvertisementId, @Param("employerId") int employerId);
+	@Query("update JobAdvertisement set approvalStatus=?2 "
+			+ "where jobAdvertisementId=?1")
+	int updateJobAdvertisementSetApprovalStatus(int jobAdvertisementId, boolean status);
 	
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementDto(ja.jobAdvertisementId, e.companyName , p.positionName , ja.positionAmount, ja.releaseDate, ja.applicationDeadline) From JobAdvertisement ja Inner Join ja.employer e Inner Join ja.position p")
 	List<JobAdvertisementDto> getJobAdvertisementDetails();
+	
+
+	
 }

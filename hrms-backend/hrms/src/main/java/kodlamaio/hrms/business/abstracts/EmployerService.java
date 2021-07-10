@@ -14,5 +14,6 @@ public interface EmployerService {
 	 Result login( String email, String password);
 	 Result update(Employer employer);
 	 Result delete(int userId);
+	 DataResult<List<Employer>> getAllEmployerByVerificationStatus(boolean status);
 
 }

@@ -83,7 +83,7 @@ export default function Navi() {
                   className="hover:text-black-500 text-black-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="/contact"
                 >
-                  <i className="text-black-400 far fa-phone text-lg leading-lg mr-2" />{" "}
+                  <i className="text-black-400 far fa-address-card text-lg leading-lg mr-2" />{" "}
                   İletişim
                 </a>
               </li>

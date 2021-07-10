@@ -10,17 +10,21 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.dataAccess.abstracts.SystemUserDao;
 import kodlamaio.hrms.entities.concretes.SystemUser;
 
 @Service
 public class SystemUserManager implements SystemUserService{
 	private SystemUserDao systemUserDao;
+	private EmployerDao employerDao;
+
 	
 	@Autowired
-	public SystemUserManager(SystemUserDao systemUserDao) {
+	public SystemUserManager(SystemUserDao systemUserDao, EmployerDao employerDao) {
 		super();
 		this.systemUserDao = systemUserDao;
+		this.employerDao = employerDao;
 	}
 
 	@Override
@@ -45,6 +49,11 @@ public class SystemUserManager implements SystemUserService{
 	public Result register(SystemUser systemUser) {
 		this.systemUserDao.save(systemUser);
 		return new SuccessResult("Sistem Personeli Başarıyla Güncellendi.");
+	}
+	@Override
+	public Result updateEmployerSetVerificationStatusForUserId(int employerId, boolean status) {
+		this.employerDao.updateEmployerSetVerificationStatusForUserId(employerId,status);
+		return new SuccessResult("İş Veren Onaylandı!");
 	}
 
 }

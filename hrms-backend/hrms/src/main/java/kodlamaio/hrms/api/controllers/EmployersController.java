@@ -64,8 +64,11 @@ public class EmployersController {
 	@DeleteMapping("/delete")
 	public Result delete(@RequestBody int userId) {
 		return this.employerService.delete(userId);
-		
 	}
+	@GetMapping("/getAllEmployerByVerificationStatus")
+	public DataResult<List<Employer>> getAllEmployerByVerificationStatus(boolean status) {
+		return this.employerService.getAllEmployerByVerificationStatus(status);
+	}	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions){

@@ -20,6 +20,7 @@
     "react-scripts": "4.0.3",
     "react-toastify": "^7.0.4",
     "reactstrap": "^8.9.0",
+    "rebass": "^4.0.7",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
     "tailwindcss": "^2.2.4",

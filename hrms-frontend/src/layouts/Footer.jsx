@@ -68,7 +68,7 @@ export default function Footer() {
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
                   <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                    Site Haritası
+                    SİTE HARİTASI
                   </span>
                   <ul className="list-unstyled">
                     <li>
@@ -107,7 +107,7 @@ export default function Footer() {
                 </div>
                 <div className="w-full lg:w-4/12 px-4">
                   <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-                    Diğer
+                    DİĞER
                   </span>
                   <ul className="list-unstyled">
                     <li>

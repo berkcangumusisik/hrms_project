@@ -62,5 +62,9 @@ public class EmployerManager implements EmployerService{
 		}
 		return result;
 	}
-
+	@Override
+	public DataResult<List<Employer>> getAllEmployerByVerificationStatus(boolean status) {
+		return new SuccessDataResult<List<Employer>>(this.employerDao.getAllEmployerByVerificationStatus(status),
+				"İş Verenler Listelendi.");
+	}
 }

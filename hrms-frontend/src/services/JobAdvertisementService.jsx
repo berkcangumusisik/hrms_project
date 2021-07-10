@@ -4,13 +4,13 @@ import axios from "axios"
 export default class JobAdvertisementService {
 
     getJobAdvertisements() {
-        return axios.get("/api/jobAdvertisement/getAll")
+        return axios.get("http://localhost:8080/api/jobAdvertisement/getAll")
     }
     closeTheJobAdvertisement(employerId, jobAdvertisementId, status){
-        return axios.post("/api/jobAdvertisement/closeTheJobAdvertisement?employerId="+employerId+"&jobAdvertisementId="+jobAdvertisementId+"&status="+status)
+        return axios.post("http://localhost:8080/api/jobAdvertisement/closeTheJobAdvertisement?employerId="+employerId+"&jobAdvertisementId="+jobAdvertisementId+"&status="+status)
     }
     add(jobAdvertisement){
-        return axios.get("/api/jobAdvertisement/add",jobAdvertisement)
+        return axios.post("http://localhost:8080/api/jobAdvertisement/add" ,jobAdvertisement)
     }
     getByAdvertisementStatus(status){
         return axios.get("http://localhost:8080/api/jobAdvertisement/getAllActives?status="+status)
@@ -32,12 +32,14 @@ export default class JobAdvertisementService {
     getJobAdvertisementDetails(){
         return axios.get("http://localhost:8080/api/jobAdvertisement/getJobAdvertisementDetails")
     }
-    changeApprovalStatusForJobAdvertisementID(jobAdvertisementID, status){
-        return axios.post("http://localhost:8080/api/jobAdvertisement/updateJobAdvertisementSetApprovalStatus?jobAdvertisementId="+jobAdvertisementID+"&status="+status)
+    changeApprovalStatusForJobAdvertisementId(jobAdvertisementID, status){
+        return axios.post("/api/jobAdvertisement/updateJobAdvertisementSetApprovalStatus?jobAdvertisementId="+jobAdvertisementID+"&status="+status)
     }
     getJobAdvertisementByJobAdvertisementId(jobAdvertisementId) {
         return axios.get("http://localhost:8080/api/jobAdvertisement/getByJobAdvertisementId?id="+jobAdvertisementId)
     }
-
-
+    getActiveOrPassiveJobAdvertisementsSortedForEmployer(status, employerId) {
+        return axios.get("http://localhost:8080/api/jobAdvertisement/getAllSortedJobAdvertisementByStatusForEmployerId?employerId="+employerId +"&status="+status)
+        
+    }
 }

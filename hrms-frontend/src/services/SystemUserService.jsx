@@ -8,4 +8,7 @@ export default class SystemUserService {
     add(systemUser){
         return axios.post("http://localhost:8080/api/systemUser/register", systemUser)
     }
+    employerVerification(employerId, status){
+        return axios.post("http://localhost:8080/api/systemUser/employerVerification?employerId="+employerId+"&status="+status)
+    }
 }

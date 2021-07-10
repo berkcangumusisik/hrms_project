@@ -70,13 +70,28 @@ public class JobAdvertisementsController {
 	}
 
 	@PostMapping("/add")
-	public Result addJobAdvertisement(@RequestBody JobAdvertisement jobAdvertisement) {
-		return this.jobAdvertisementService.addJobAdvertisement(jobAdvertisement);
+	public Result jobAdvertisementAdd(@RequestBody JobAdvertisement jobAdvertisement) {
+		return this.jobAdvertisementService.jobAdvertisementAdd(jobAdvertisement);
 	}
 
 	@PostMapping("/closeTheJobAdvertisement")
 	@Transactional
-	public Result updateJobAdvertisementSetJobAdvertisementStatusForEmployer_id(@RequestParam("jobAdvertisementId") int jobAdvertisementId, @RequestParam("employerId") int employerId) {
-		return this.jobAdvertisementService.updateJobAdvertisementSetJobAdvertisementStatusForEmployer_id(jobAdvertisementId, employerId);
+	public Result updateJobAdvertisementSetJobAdvertisementStatusForEmployer_userId(
+			@RequestParam("jobAdvertisementId") int jobAdvertisementId, @RequestParam("employerId") int employerId,
+			@RequestParam("status") boolean status) {
+		return this.jobAdvertisementService.updateJobAdvertisementSetJobAdvertisementStatusForEmployer_userId(
+				jobAdvertisementId, employerId, status);
 	}
+	@GetMapping("/getAllSortedJobAdvertisementByStatusForEmployerId")
+	public DataResult<List<JobAdvertisement>> getAllSortedJobAdvertisementByStatusForEmployer_id(
+			@RequestParam("status") boolean status, @RequestParam("employerId") int employerId) {
+		return this.jobAdvertisementService.getAllSortedJobAdvertisementByStatusForEmployer_id(status, employerId);
+	}
+	@PostMapping("/updateJobAdvertisementSetApprovalStatus")
+	@Transactional
+	public Result updateJobAdvertisementSetApprovalStatus(@RequestParam("jobAdvertisementId") int jobAdvertisementId,
+			@RequestParam("status") boolean status) {
+		return this.jobAdvertisementService.updateJobAdvertisementSetApprovalStatus(jobAdvertisementId, status);
+	}
+
 }

@@ -31,7 +31,7 @@ export default function ContactUs() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="ad-soyad"
                       >
-                        İsim Soyisim
+                        İSİM SOYİSİM
                       </label>
                       <input
                         type="text"
@@ -45,7 +45,7 @@ export default function ContactUs() {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="email"
                       >
-                        Email
+                        EMAİL
                       </label>
                       <input
                         type="email"
