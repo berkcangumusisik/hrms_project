@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.core.entities.User;
@@ -44,5 +45,8 @@ public class JobSeeker extends User{
 	
 	@OneToMany(mappedBy = "jobSeeker")
 	private List<Cv> cvs;
-
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobSeeker")
+	private List<Favorite> favorite;
 } 

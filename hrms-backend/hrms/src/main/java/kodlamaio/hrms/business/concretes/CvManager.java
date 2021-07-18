@@ -1,5 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,18 @@ public class CvManager implements CvService {
 	@Override
 	public DataResult<List<CvDto>> getCvDetails(int cvId) {
 		return new SuccessDataResult<List<CvDto>>(this.cvDao.getCvDetails(cvId), "Cv listelendi.");
+	}
+
+	@Override
+	public Result updateCv(Cv cv, int cvId, int id) {
+		cv.setCvId(cvId);
+		return null;
+	}
+
+	@Override
+	public Result updateCvSetCreationDate(int cvId) {
+		Date date = new Date(System.currentTimeMillis());
+		this.cvDao.updateCvSetCreationDate(cvId, date);
+		return new SuccessResult("Oluşturulma Tarihi Güncellendi");
 	}
 }

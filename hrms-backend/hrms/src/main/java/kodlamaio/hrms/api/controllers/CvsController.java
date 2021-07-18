@@ -3,6 +3,7 @@ package kodlamaio.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,5 +48,11 @@ public class CvsController {
 	@GetMapping("/getCvDetails")
 	public DataResult<List<CvDto>> getCvDetails(int cvId){
 		return this.cvService.getCvDetails(cvId);
+	}
+
+	@Transactional
+	@PostMapping("/updateCvSetCreationDate")
+	public Result updateCvSetCreationDate(@RequestParam("cvId") int cvId) {
+		return this.cvService.updateCvSetCreationDate(cvId);
 	}
 }

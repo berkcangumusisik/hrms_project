@@ -58,6 +58,10 @@ public class SystemUsersController {
 		return this.systemUserService.delete(userId);
 		
 	}
+	@GetMapping("/getByUserId")
+	public DataResult<SystemUser> getById(int id){
+		return this.systemUserService.getById(id);
+	}
 	@Transactional
 	@PostMapping("/employerVerification")
 	public Result updateEmployerSetVerificationStatusForEmployer_id(@RequestParam("employerId") int employerId,

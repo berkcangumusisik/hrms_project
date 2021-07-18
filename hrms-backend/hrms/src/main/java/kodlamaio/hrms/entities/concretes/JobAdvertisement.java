@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -70,5 +75,7 @@ public class JobAdvertisement {
 	@JoinColumn(name="work_type_id")
 	private WorkType workType;
 
-
+	@JsonIgnore
+	@OneToMany(mappedBy = "jobAdvertisement")
+	private List<Favorite> favorite;
 }

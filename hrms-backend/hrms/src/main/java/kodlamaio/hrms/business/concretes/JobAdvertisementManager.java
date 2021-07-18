@@ -2,12 +2,13 @@ package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -25,21 +26,39 @@ private JobAdvertisementDao jobAdvertisementDao;
 		super();
 		this.jobAdvertisementDao = jobAdvertisementDao;
 	}
-	
+
 	@Override
 	public DataResult<List<JobAdvertisement>> getAll() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(), "İş ilanları listelendi");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(),
+				"İş İlanları Listelendi");
+	}
+
+	@Override
+	public DataResult<JobAdvertisement> getByJobAdvertisementId(int id) {
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByJobAdvertisementId(id));
+
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllSorted() {
 		Sort sort = Sort.by(Direction.ASC, "applicationDeadline");
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort), "İş ilanları listelendi.");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(sort),
+				"İş İlanları Listelendi.");
 	}
+
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getByEmployer_id(int userId) {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_id(userId), "Firmanın iş ilanları listelendi.");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_id(userId),
+				"Firmanın İş İlanları Listelendi.");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllSortedJobAdvertisementByStatusForEmployer_id(boolean status,
+			int employerId) {
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao.getAllSortedJobAdvertisementByStatusForEmployerId(status, employerId),
+				"İş İlanları Listelendi.");
 	}
 
 	@Override
@@ -48,20 +67,33 @@ private JobAdvertisementDao jobAdvertisementDao;
 		if (status == false) {
 			message = "Pasif ";
 		}
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByAdvertisementStatus(status), message + " iş ilanları listelendi.");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByAdvertisementStatus(status),
+				message + " İş İlanları Listelendi.");
 	}
 
 	@Override
-	public Result  jobAdvertisementAdd(JobAdvertisement jobAdvertisement) {
-		Result result = new ErrorResult("Ekleme başarısız!");
-		if (!jobAdvertisement.getJobDescription().isEmpty()) {
-			this.jobAdvertisementDao.save(jobAdvertisement);
-			result = new SuccessResult("Ekleme başarılı!");
+	public DataResult<List<JobAdvertisement>> getAllApproveStatus(boolean status) {
+		String message = "Onaylanmış ";
+		if (status == false) {
+			message = "Onaylanmamış ";
 		}
-		return result;
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByApprovalStatus(status),
+				message + " İş İlanları Listelendi.");
 	}
 
-	@Override 
+	@Override
+	public DataResult<List<JobAdvertisement>> getByAdvertisementStatusAndApprovalStatus() {
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao.getByAdvertisementStatusAndApprovalStatus(true, true),"Yayında olan ilanlar listelendi");
+	}
+
+	@Override
+	public Result jobAdvertisementAdd(JobAdvertisement jobAdvertisement) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public Result updateJobAdvertisementSetJobAdvertisementStatusForEmployer_userId(int jobAdvertisementId,
 			int employerId, boolean status) {
 		String message = "İlan Kapatıldı!";
@@ -73,30 +105,14 @@ private JobAdvertisementDao jobAdvertisementDao;
 		return new SuccessResult(message);
 	}
 
-
-	@Override
-	public DataResult<List<JobAdvertisement>> getAllActiveSorted() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllActiveSorted(), "İş ilanları listelendi.");
-	}
-
 	@Override
 	public DataResult<List<JobAdvertisementDto>> getJobAdvertisementDetails() {
-		return new SuccessDataResult<List<JobAdvertisementDto>>(this.jobAdvertisementDao.getJobAdvertisementDetails(), "İş ilanları tablo yapısında listelendi.");
+		return new SuccessDataResult<List<JobAdvertisementDto>>(
+				this.jobAdvertisementDao.getJobAdvertisementDetails(),
+				"İş İlanları Tablo Şekinde Listelendi.");
 	}
 
-	@Override 
-	public DataResult<JobAdvertisement> getByJobAdvertisementId(int id) {
-		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByJobAdvertisementId(id));
-	}
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllApproveStatus(boolean status) {
-		String message = "Onaylanan ";
-		if (status == false) {
-			message = "Onaylanmayan ";
-		}
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByApprovalStatus(status), message + " iş ilanları listelendi.");
-	}
-	@Override 
 	public Result updateJobAdvertisementSetApprovalStatus(int jobAdvertisementId, boolean status) {
 		String message = "İlan Onaylandı!";
 		if (status == false) {
@@ -105,11 +121,12 @@ private JobAdvertisementDao jobAdvertisementDao;
 		this.jobAdvertisementDao.updateJobAdvertisementSetApprovalStatus(jobAdvertisementId, status);
 		return new SuccessResult(message);
 	}
+
 	@Override
-	public DataResult<List<JobAdvertisement>> getAllSortedJobAdvertisementByStatusForEmployer_id(boolean status,
-			int employerId) {
-		return new SuccessDataResult<List<JobAdvertisement>>
-		(this.jobAdvertisementDao.getAllSortedJobAdvertisementByStatusForEmployerId(status, employerId), "İş İlanları Listelendi.");
+	public DataResult<List<JobAdvertisement>> getAllByPageSize(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(pageable).getContent());
 	}
+	
 	
 }

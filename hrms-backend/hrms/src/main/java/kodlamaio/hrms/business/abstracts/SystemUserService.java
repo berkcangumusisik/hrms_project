@@ -12,5 +12,6 @@ public interface SystemUserService{
 	Result update(SystemUser systemUser);
 	Result register(SystemUser systemUser);
 	Result updateEmployerSetVerificationStatusForUserId(int employerId, boolean status);
+	DataResult<SystemUser>  getById(int id);
 
 }

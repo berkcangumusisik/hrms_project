@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,7 +53,7 @@ public class EmployersController {
 		return ResponseEntity.ok(this.employerService.register(employer, passwordAgain));
 	}
 
-	@PostMapping("/update")
+	@PutMapping("/update")
 	public ResponseEntity<?> update(@Valid @RequestBody Employer employer) {
 		return ResponseEntity.ok(this.employerService.update(employer));
 	}
@@ -65,6 +66,19 @@ public class EmployersController {
 	public Result delete(@RequestBody int userId) {
 		return this.employerService.delete(userId);
 	}
+	@GetMapping("/getById")
+	public DataResult<Employer> getById(int id){
+		return this.employerService.getById(id);
+	}
+	@GetMapping("/getUpdateById")
+	public DataResult<Map<String, Object>> getUpdateById(int id){
+		return this.employerService.getUpdateById(id);
+	}
+	@GetMapping("/getAllUpdatedEmployer")
+	public DataResult<List<Employer>> getAllUpdatedEmployer() {
+		return this.employerService.getAllUpdatedEmployer();
+	}
+
 	@GetMapping("/getAllEmployerByVerificationStatus")
 	public DataResult<List<Employer>> getAllEmployerByVerificationStatus(boolean status) {
 		return this.employerService.getAllEmployerByVerificationStatus(status);

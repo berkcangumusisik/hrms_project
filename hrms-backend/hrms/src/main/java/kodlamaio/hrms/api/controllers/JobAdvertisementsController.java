@@ -39,21 +39,16 @@ public class JobAdvertisementsController {
 		return this.jobAdvertisementService.getByJobAdvertisementId(id);
 	}
 
-
-	@GetMapping("/getAllActives")
+	@GetMapping("/getByAdvertisementStatus")
 	public DataResult<List<JobAdvertisement>> getByAdvertisementStatus(@RequestParam boolean status) {
 		return this.jobAdvertisementService.getByAdvertisementStatus(status);
 	}
-
+	
 	@GetMapping("/getAllSorted")
 	public DataResult<List<JobAdvertisement>> getAllSorted() {
 		return this.jobAdvertisementService.getAllSorted();
 	}
 	
-	@GetMapping("/getAllActiveSorted")
-	public DataResult<List<JobAdvertisement>> getAllActiveSorted() {
-		return this.jobAdvertisementService.getAllActiveSorted();
-	}
 	@GetMapping("/getJobAdvertisementDetails")
 	public DataResult<List<JobAdvertisementDto>> getJobAdvertisementDetails() {
 		return this.jobAdvertisementService.getJobAdvertisementDetails();
@@ -87,11 +82,20 @@ public class JobAdvertisementsController {
 			@RequestParam("status") boolean status, @RequestParam("employerId") int employerId) {
 		return this.jobAdvertisementService.getAllSortedJobAdvertisementByStatusForEmployer_id(status, employerId);
 	}
+
 	@PostMapping("/updateJobAdvertisementSetApprovalStatus")
 	@Transactional
 	public Result updateJobAdvertisementSetApprovalStatus(@RequestParam("jobAdvertisementId") int jobAdvertisementId,
 			@RequestParam("status") boolean status) {
 		return this.jobAdvertisementService.updateJobAdvertisementSetApprovalStatus(jobAdvertisementId, status);
 	}
-
+	@GetMapping("/getAllByPageSize")
+	public DataResult<List<JobAdvertisement>> getAllByPageSize(@RequestParam("pageNo") int pageNo,
+			@RequestParam("pageSize") int pageSize) {
+		return this.jobAdvertisementService.getAllByPageSize(pageNo, pageSize);
+	}
+	@GetMapping("/getByAdvertisementStatusAndApprovalStatus")
+	public DataResult<List<JobAdvertisement>> getByAdvertisementStatusAndApprovalStatus(){
+		return this.jobAdvertisementService.getByAdvertisementStatusAndApprovalStatus();
+	}
 }

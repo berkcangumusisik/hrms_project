@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.abstracts;
 
 import java.util.List;
+import java.util.Map;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -15,5 +16,8 @@ public interface EmployerService {
 	 Result update(Employer employer);
 	 Result delete(int userId);
 	 DataResult<List<Employer>> getAllEmployerByVerificationStatus(boolean status);
-
+	 DataResult<Map<String, Object>> getUpdateById(int id);
+	 DataResult<List<Employer>> getAllUpdatedEmployer();
+	 Result updatedEmployerVerification(int employerId);
+	 DataResult<Employer>  getById(int id);
 }

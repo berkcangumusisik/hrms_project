@@ -10,6 +10,8 @@ import kodlamaio.hrms.entities.dtos.CvDto;
 public interface CvService {
 	DataResult<List<Cv>> getAll();
 	Result add(Cv cv);
+	Result updateCv(Cv cv, int cvId, int id);
+	Result updateCvSetCreationDate(int cvId);
 	DataResult<List<Cv>> getByCvIdForJobSeeker_UserId(int userId);
 	DataResult<List<CvDto>> getCvDetails(int cvId);
 }

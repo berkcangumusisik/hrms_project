@@ -56,4 +56,10 @@ public class SystemUserManager implements SystemUserService{
 		return new SuccessResult("İş Veren Onaylandı!");
 	}
 
+	@Override
+	public DataResult<SystemUser> getById(int id) {
+		return new SuccessDataResult<SystemUser>(this.systemUserDao.getById(id));
+
+	}
+
 }

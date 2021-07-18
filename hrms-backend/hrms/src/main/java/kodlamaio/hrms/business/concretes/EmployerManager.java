@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,5 +67,40 @@ public class EmployerManager implements EmployerService{
 	public DataResult<List<Employer>> getAllEmployerByVerificationStatus(boolean status) {
 		return new SuccessDataResult<List<Employer>>(this.employerDao.getAllEmployerByVerificationStatus(status),
 				"İş Verenler Listelendi.");
+	}
+
+	@Override
+	public DataResult<Map<String, Object>> getUpdateById(int id) {
+		return new SuccessDataResult<>(this.employerDao.getUpdateById(id), "Güncellenmiş bilgiler listelendi.");
+
+	}
+
+	@Override
+	public DataResult<List<Employer>> getAllUpdatedEmployer() {
+		return new SuccessDataResult<List<Employer>>(this.employerDao.findByUpdateNotNull(), "Güncellenmiş iş verenler listelendi");
+
+	}
+
+
+
+	@Override
+	public Result updatedEmployerVerification(int employerId) {
+		Map<String, Object> updatedInfo = getUpdateById(employerId).getData();
+		Employer newEmployer = new Employer();
+		newEmployer.setId(employerId);
+		newEmployer.setEmail(updatedInfo.get("email").toString());
+		newEmployer.setPassword(updatedInfo.get("password").toString());
+		newEmployer.setCompanyName(updatedInfo.get("companyName").toString());
+		newEmployer.setWebAddress(updatedInfo.get("webAdress").toString());
+		newEmployer.setPhoneNumber(updatedInfo.get("phoneNumber").toString());
+		newEmployer.setUpdateStatus(true);
+		this.employerDao.save(newEmployer);
+		return new SuccessResult("Güncelleme Onaylandı!");
+	}
+
+	@Override
+	public DataResult<Employer> getById(int id) {
+		return new SuccessDataResult<Employer>(this.employerDao.getById(id), "İş Veren Bilgileri Listelendi.");
+
 	}
 }

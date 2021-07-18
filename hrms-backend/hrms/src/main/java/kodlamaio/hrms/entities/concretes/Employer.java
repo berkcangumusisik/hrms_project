@@ -1,17 +1,20 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
 import kodlamaio.hrms.core.entities.User;
 import lombok.AllArgsConstructor;
@@ -25,9 +28,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id" , referencedColumnName = "id")
-
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "jobAdvertisement" })
 @EqualsAndHashCode(callSuper = false)
-
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class Employer extends User{
 
 	
@@ -43,7 +46,13 @@ public class Employer extends User{
 	@Column(name="verification_status")
 	private boolean verificationStatus;
 	
+	@Column(name = "update_status")
+	private boolean updateStatus;
+
+	@Column(name = "update_employer")
+	@Type(type = "jsonb")
+	private Map<String, Object> update;
+	
 	@OneToMany(mappedBy = "employer")
-	@JsonIgnore
 	private List<JobAdvertisement> jobAdvertisement;
 }

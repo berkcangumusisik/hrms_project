@@ -4,21 +4,23 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementDto;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
 
 	@Query("From JobAdvertisement where advertisementStatus=true ORDER BY applicationDeadline DESC")
-	List<JobAdvertisement> getAllActiveSorted();
+	List<JobAdvertisement> getAllSortedJobAdvertisementByStatus(boolean status);
 	
 	@Query("From JobAdvertisement j where j.advertisementStatus=?1 and j.employer.id=?2 ORDER BY applicationDeadline DESC")
 	List<JobAdvertisement> getAllSortedJobAdvertisementByStatusForEmployerId(boolean status, int employerId);
+	
 	JobAdvertisement getByJobAdvertisementId(int id);
 	
 	List<JobAdvertisement> getByAdvertisementStatus(boolean status);
 	
+	List<JobAdvertisement> getByAdvertisementStatusAndApprovalStatus(boolean advertisementStatus, boolean approvalStatus);
+
 	List<JobAdvertisement> getByApprovalStatus(boolean status);
 	
 	JobAdvertisement getByJobAdvertisementIdAndEmployer_id(int jobAdvertisementId, int userId);
