@@ -20,7 +20,7 @@
 :rainbow:	Kayıdın gerçekleşmesi için e-posta doğrulaması gerekir.
 ## :fire:	Req 2 : İş verenler sisteme kayıt olabilmelidir.
 
-###Kabul Kriterleri:
+### Kabul Kriterleri:
 
 :rainbow: Kayıt sırasında kullanıcıdan şirket adı, web sitesi, web sitesi ile aynı domaine sahip e-posta, telefon, şifre, şifre tekrarı bilgileri istenir. Burada amaç sisteme şirket olmayanların katılmasını engellemektir.
 <br>
@@ -185,7 +185,7 @@
 <br>
 :star: Footer yapıldı.
 
-# PROJEDE FOTOĞRAFLARI
+# PROJENİN FOTOĞRAFLARI
 <img src="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/anasayfa.png">
 <br>
 <img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/anasayfa2.png">
@@ -201,6 +201,7 @@
 <img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/işilanları.png">
 <br>
 <img src ="https://github.com/berkcangumusisik/hrms_project/blob/main/foto%C4%9Fraflar/işverenkayıt.png">
+
 # PROJEDE KULLANILAN TEKNOJİLER
 <br>
 :star: Java
@@ -209,8 +210,8 @@
 <br>
 :star: React
 <br>
-:star:Semantic UI React
+:star: Semantic UI React
 <br>
-:star:Fontawesomme
+:star: Fontawesomme
 <br>
-:star:Reactstrap
+:star: Reactstrap
